@@ -1,28 +1,56 @@
 import RPi.GPIO as gpio
 import time
 import random
+import math
 
+RED = 21
+YELLOW = 20
+GREEN = 16
+
+class Light:
+    pinNumber = -1
+
+    def __init__(self, pinNum):
+        self.pinNumber = pinNum
+        gpio.setup(self.pinNumber, gpio.OUT)
+
+    def enable(self):
+        gpio.output(self.pinNumber, gpio.HIGH)
+
+    def disable(self):
+        gpio.output(self.pinNumber, gpio.LOW)
+
+
+def playAlarm(reps):
+    for i in range(reps):
+        green_light.enable()
+        for j in range(1000):
+            tone = 500 + j + (100 * math.sin(j))
+            audioPin.ChangeFrequency(tone)
+            time.sleep(0.001)
+
+            if j == 900:
+                green_light.disable()
+
+#setup
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(False)
+
+# Set up LED pins
+red_light = Light(RED)
+yellow_light = Light(YELLOW)
+green_light = Light(GREEN)
+
+# Set up Audio pin
 gpio.setup(12, gpio.OUT)
+audioPin = gpio.PWM(12, 1000) # (pin #, frequency)
+audioPin.start(50) # set duty cycle
 
-#activate led
-gpio.output(12, gpio.HIGH)
-print "LEDs enabled"
+###################################
+playAlarm(3)
+###################################
 
-#time.sleep(1)
-
-#play sound
-p = gpio.PWM(12, 50)
-p.start(70)
-for x in range(10000):
-    tone = random.randint(200,2200)
-    p.ChangeFrequency(tone)
-    time.sleep(0.0001)
-p.stop()
-
-#deactivate led
-gpio.output(12, gpio.LOW)
-print "LEDs disabled"
-
+#cleanup
+audioPin.stop()
 gpio.cleanup()
+
