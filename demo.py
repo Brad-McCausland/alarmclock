@@ -32,6 +32,31 @@ def playAlarm(reps):
             if j == 900:
                 green_light.disable()
 
+def display_green():
+    red_light.disable()
+    yellow_light.disable()
+    green_light.enable()
+
+def display_yellow():
+    red_light.disable()
+    yellow_light.enable()
+    green_light.disable()
+    
+def display_red():
+    red_light.enable()
+    yellow_light.disable()
+    green_light.disable()
+
+def display_none():
+    red_light.disable()
+    yellow_light.disable()
+    green_light.disable()
+
+def display_all():
+    red_light.enable()
+    yellow_light.enable()
+    green_light.enable()
+
 #setup
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(False)
@@ -44,11 +69,21 @@ green_light = Light(GREEN)
 # Set up Audio pin
 gpio.setup(12, gpio.OUT)
 audioPin = gpio.PWM(12, 1000) # (pin #, frequency)
-audioPin.start(50) # set duty cycle
+#audioPin.start(50) # set duty cycle
 
-###################################
-playAlarm(3)
-###################################
+#######################################
+while(1):
+    command = raw_input("command: ")
+    if command == "g":
+        display_green()
+    elif command == 'y':
+        display_yellow()
+    elif command == 'r':
+        display_red()
+    elif command == 'a':
+        display_all()
+    elif command == 'n':
+        display_none()
 
 #cleanup
 audioPin.stop()
