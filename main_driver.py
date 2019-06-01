@@ -12,11 +12,11 @@ SoundController = SoundController()
 
 # Display yellow warn for 50 minutes
 LEDController.display_yellow()
-time.sleep(10) 
+time.sleep(50 * 60) 
 
 # Display red warn for ten minutes, minues ten seconds for flashing
 LEDController.display_red()
-time.sleep(10)
+time.sleep((10 * 60) - 10)
 
 # Flash red warn light for ten seconds
 LEDController.flash_red(10)
