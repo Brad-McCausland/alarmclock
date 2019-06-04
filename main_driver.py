@@ -1,12 +1,14 @@
 import time
 from LEDController import LEDController
 from SoundController import SoundController
+from StrobeController import StrobeController
 import setproctitle
 
 setproctitle.setproctitle("TACO_driver")
 
 LEDController = LEDController()
 SoundController = SoundController()
+StrobeController = StrobeController()
 
 # Display yellow, red, and flashing red lights as alarm time approaches
 
@@ -23,3 +25,6 @@ LEDController.flash_red(10)
 
 # Play alarm sound
 SoundController.playAlarm(500)
+
+# Flash strobe
+StrobeController.enable_strobe()

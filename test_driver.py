@@ -1,6 +1,7 @@
 import time
 from LEDController import LEDController
 from SoundController import SoundController
+from StrobeController import StrobeController
 import setproctitle
 
 setproctitle.setproctitle("TACO_driver")
@@ -23,3 +24,6 @@ LEDController.flash_red(10)
 
 # Play alarm sound
 SoundController.playAlarm(5)
+
+# Flash strobe
+StrobeController.enable_strobe()
