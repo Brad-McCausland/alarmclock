@@ -4,7 +4,7 @@ import setproctitle
 import subprocess
 import signal
 import os
-import LEDController
+from LEDController import LEDController
 
 def kill_driver():
     p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
@@ -38,8 +38,6 @@ class MyHandler(BaseHTTPRequestHandler):
 
         kill_driver()
 
-ledcontroller = LEDController()
-
 setproctitle.setproctitle("TACO_webhost")
 
 PORT = 8080
@@ -47,5 +45,3 @@ Handler = MyHandler
 httpd = socketserver.TCPServer(("", PORT), Handler)
 
 httpd.serve_forever()
-
-controller.display_green()
