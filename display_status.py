@@ -1,8 +1,7 @@
 # A simple script that indicates the status of TACO_server on the Pi LEDs. Green for online, flashing yellow for not.
 # To be called by crontab every 5 minutes
 
-import subprocess, os, LEDController
-
+import subprocess, os, LEDController, time
 controller = LEDController.LEDController()
 
 p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
@@ -21,5 +20,6 @@ if server_online:
     # Only change lights if driver is not currently running
     if not driver_online:
         controller.display_green()
+        time.sleep(60 * 5)
 else:
     controller.flash_yellow(60 * 5)

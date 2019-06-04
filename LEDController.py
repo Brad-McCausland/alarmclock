@@ -22,6 +22,7 @@ class LEDController:
 
     def __del__(self):
         #cleanup
+        self.display_none()
         gpio.cleanup()
 
     def display_green(self):

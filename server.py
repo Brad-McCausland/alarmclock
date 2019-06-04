@@ -15,7 +15,7 @@ def kill_driver():
             pid = int(line.split()[0])
             os.kill(pid, signal.SIGKILL)
             controller = LEDController.LEDController()
-            controller.display_none()
+            controller.display_green()
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_HEAD(s):
@@ -25,16 +25,12 @@ class MyHandler(BaseHTTPRequestHandler):
         print("HEAD")
     def do_GET(s):
         s.send_response(200)
-        s.send_header("Content-type", "text/html")
+        s.send_header("Content-type", "image/jpg")
         s.end_headers()
 
-        httpFile = open("/home/pi/Documents/alarmclock/index.html", 'r')
-        httpResponse = ""
-        for line in httpFile:
-            httpResponse = httpResponse + line + '\n'
-        
-        data = bytes(httpResponse, "utf-8")
-        s.wfile.write(data)
+        f = open("/home/pi/Documents/alarmclock/gowron.jpg", 'rb')
+
+        s.wfile.write(f.read())
 
         kill_driver()
 

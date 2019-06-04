@@ -7,6 +7,9 @@ class Light:
         self.pinNumber = pinNum
         gpio.setup(self.pinNumber, gpio.OUT)
 
+    def __del__(self):
+        self.disable()
+
     def enable(self):
         gpio.output(self.pinNumber, gpio.HIGH)
 
