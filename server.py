@@ -28,7 +28,7 @@ class MyHandler(BaseHTTPRequestHandler):
         s.send_header("Content-type", "text/html")
         s.end_headers()
 
-        httpFile = open("index.html", 'r')
+        httpFile = open("/home/pi/Documents/alarmclock/index.html", 'r')
         httpResponse = ""
         for line in httpFile:
             httpResponse = httpResponse + line + '\n'

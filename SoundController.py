@@ -17,6 +17,7 @@ class SoundController:
     # Play single tone and then wait for specified durations, defaults to .5 each. Meant to be called in a loop by code importing this class
     def playTone(self, tone_duration = 0.5, pause_duration = 0.5):
         tone = 800
+        self.audioPin.start(50)
         self.audioPin.ChangeFrequency(tone)
         time.sleep(tone_duration)
         self.audioPin.stop()

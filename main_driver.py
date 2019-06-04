@@ -22,4 +22,4 @@ time.sleep((10 * 60) - 10)
 LEDController.flash_red(10)
 
 # Play alarm sound
-SoundController.playAlarm(5)
+SoundController.playAlarm(500)
