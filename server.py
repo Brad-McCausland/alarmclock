@@ -5,6 +5,10 @@ import subprocess
 import signal
 import os
 from LEDController import LEDController
+from StrobeController import StrobeController
+
+LEDController = LEDController()
+StrobeController = StrobeController()
 
 def kill_driver():
     p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
@@ -14,8 +18,8 @@ def kill_driver():
         if b"TACO_driver" in line:
             pid = int(line.split()[0])
             os.kill(pid, signal.SIGKILL)
-            controller = LEDController.LEDController()
-            controller.display_green()
+            LEDController.display_green()
+            StrobeController.disable_strobe()
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_HEAD(s):

@@ -9,6 +9,7 @@ class StrobeController:
         gpio.setwarnings(False)
 
         gpio.setup(self.pinNumber, gpio.OUT)
+        self.disable_strobe()
 
     def __del__(self):
         self.disable_strobe()
