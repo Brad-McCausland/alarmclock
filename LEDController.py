@@ -55,6 +55,15 @@ class LEDController:
         self.yellow_light.disable()
         for i in range (duration/2):
             self.red_light.enable()
-            time.sleep(1)
+            time.sleep(0.5)
             self.red_light.disable()
-            time.sleep(1)
+            time.sleep(0.5)
+
+    def flash_yellow(self, duration):
+        self.green_light.disable()
+        self.red_light.disable()
+        for i in range (duration):
+            self.yellow_light.enable()
+            time.sleep(0.5)
+            self.yellow_light.disable()
+            time.sleep(0.5)

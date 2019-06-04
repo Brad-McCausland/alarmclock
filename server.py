@@ -38,15 +38,14 @@ class MyHandler(BaseHTTPRequestHandler):
 
         kill_driver()
 
+ledcontroller = LEDController()
+
 setproctitle.setproctitle("TACO_webhost")
 
 PORT = 8080
 Handler = MyHandler
-
 httpd = socketserver.TCPServer(("", PORT), Handler)
 
-#kill_driver()
-
-print("serving at port", PORT)
 httpd.serve_forever()
 
+controller.display_green()
