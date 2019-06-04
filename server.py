@@ -19,7 +19,7 @@ def kill_driver():
             pid = int(line.split()[0])
             os.kill(pid, signal.SIGKILL)
             LEDController.display_green()
-            StrobeController.disable_strobe()
+            #StrobeController.disable_strobe()
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_HEAD(s):
@@ -38,7 +38,7 @@ class MyHandler(BaseHTTPRequestHandler):
 
         kill_driver()
 
-setproctitle.setproctitle("TACO_webhost")
+setproctitle.setproctitle("TACO_server")
 
 PORT = 8080
 Handler = MyHandler

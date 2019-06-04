@@ -8,6 +8,7 @@ setproctitle.setproctitle("TACO_driver")
 
 LEDController = LEDController()
 SoundController = SoundController()
+StrobeController = StrobeController()
 
 # Display yellow, red, and flashing red lights as alarm time approaches
 
@@ -22,8 +23,9 @@ time.sleep(10)
 # Flash red warn light for ten seconds
 LEDController.flash_red(10)
 
+StrobeController.enable_strobe()
+
 # Play alarm sound
 SoundController.playAlarm(5)
 
-# Flash strobe
-StrobeController.enable_strobe()
+StrobeController.disable_strobe()
